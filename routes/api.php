@@ -25,3 +25,15 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('logout', 'AuthController@logout');
     });
 });
+
+// event routes
+Route::post('triggerEvents', 'api\EventsController@triggerEvents');
+
+// Contact tracing routes
+Route::post('addContact', 'api\ContactTracingController@addContact');
+Route::post('verifyContactUser', 'api\ContactTracingController@verifyContactUser');
+Route::post('verifyContactGuest', 'api\ContactTracingController@verifyContactGuest');
+
+//Notifications routes
+Route::post('updateFirebaseToken', 'api\ContactTracingController@updateFirebaseToken');
+

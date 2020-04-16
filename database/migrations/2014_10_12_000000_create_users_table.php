@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone')->unique();
+            $table->string('firebase_token')->unique();
             $table->string('verification_code')->unique()->nullable();
             $table->timestamp('phone_verified_at')->nullable();
             $table->string('password');

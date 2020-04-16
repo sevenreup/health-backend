@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'phone', 'password',
+        'name', 'phone', 'password', 'firebase_token'
     ];
 
     /**
@@ -47,5 +47,10 @@ class User extends Authenticatable
         return $this->forceFill([
             'phone_verified_at' => $this->freshTimestamp(),
         ])->save();
+    }
+
+    public function routeNotificationForWhatsApp()
+    {
+        return $this->phone;
     }
 }
