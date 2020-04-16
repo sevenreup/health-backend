@@ -27,12 +27,12 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 // event routes
-Route::post('triggerEvents', 'api\EventsController@triggerEvents');
+Route::post('event/trigger', 'api\EventsController@triggerEvents');
 
 // Contact tracing routes
-Route::post('addContact', 'api\ContactTracingController@addContact');
-Route::post('verifyContactUser', 'api\ContactTracingController@verifyContactUser');
-Route::post('verifyContactGuest', 'api\ContactTracingController@verifyContactGuest');
+Route::post('contact/add', 'api\ContactTracingController@addContact');
+Route::post('contact/verify/user', 'api\ContactTracingController@verifyContactUser');
+Route::post('contact/verify/guest', 'api\ContactTracingController@verifyContactGuest');
 
 //Notifications routes
 Route::post('updateFirebaseToken', 'api\ContactTracingController@updateFirebaseToken');
