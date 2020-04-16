@@ -37,3 +37,20 @@ Route::post('contact/verify/guest', 'api\ContactTracingController@verifyContactG
 //Notifications routes
 Route::post('updateFirebaseToken', 'api\ContactTracingController@updateFirebaseToken');
 
+
+//user routes
+Route::get('/users', 'api\UsersController@getUsers');
+Route::get('/users/{userId}', 'api\UsersController@getSingleUser');
+Route::get('/users/{userId}/contacts', 'api\UsersController@getUserContacts');
+Route::get('/users/{userId}/fences', 'api\UsersController@getUserLocations');
+
+
+//fences routes
+Route::get('/fences', 'api\FencesController@getFences');
+Route::get('/fences/{fencesId}/users', 'api\FencesController@getUsersInFence');
+
+
+
+
+
+

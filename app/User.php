@@ -53,4 +53,15 @@ class User extends Authenticatable
     {
         return $this->phone;
     }
+
+
+    public function events()
+    {
+        return $this->hasMany('App\events', 'userId');
+    }
+
+    public function contactTraceUser()
+    {
+        return $this->hasMany('App\contactTraceUser', 'sender');
+    }
 }

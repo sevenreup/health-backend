@@ -37,8 +37,5 @@ class EventsController extends Controller
 
     }
 
-    public function getEvents()
-    {
-        
-    }
+    
 }
