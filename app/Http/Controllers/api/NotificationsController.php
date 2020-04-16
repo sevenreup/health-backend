@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class NotificationsController extends Controller
 {
-    public function updateFirebaseToken()
+    public function updateFirebaseToken(Request $request)
     {
         $userData = $this->User->find($request->input('id'));
         $userData->firebase_token = $request->input('firebase_token');

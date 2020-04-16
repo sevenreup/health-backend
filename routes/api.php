@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login');
-    Route::post('login', 'AuthController@register');
+    Route::post('register', 'AuthController@register');
 
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('logout', 'AuthController@logout');
@@ -35,7 +35,7 @@ Route::post('contact/verify/user', 'api\ContactTracingController@verifyContactUs
 Route::post('contact/verify/guest', 'api\ContactTracingController@verifyContactGuest');
 
 //Notifications routes
-Route::post('updateFirebaseToken', 'api\ContactTracingController@updateFirebaseToken');
+Route::post('updateFirebaseToken', 'api\NotificationsController@updateFirebaseToken');
 
 
 //user routes
