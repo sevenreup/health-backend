@@ -20,13 +20,13 @@ class MakeEventsTable extends Migration
             $table->enum('live', ['live','test']);
             $table->float('duration')->nullable();
             $table->integer('userId');
-            $table->integer('regionId');
+            $table->integer('fencesId');
             $table->integer('locationAccuracy');
             $table->integer('confidence');
             $table->dateTime('createdAt',0)->useCurrent();
 
             $table->foreign('userId')->references('id')->on('users');
-            $table->foreign('regionId')->references('id')->on('regions');
+            $table->foreign('fencesId')->references('id')->on('fences');
 
         });
     }
