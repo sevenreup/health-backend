@@ -13,7 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::post('/triggerEvents', 'api\EventsController@triggerEvents')->name('triggerEvents');
+
+Route::get('/', 'DashboardController@dashboard')->name('dashboard');
