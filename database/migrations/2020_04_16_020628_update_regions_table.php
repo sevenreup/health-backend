@@ -13,9 +13,10 @@ class UpdateRegionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('regions', function (Blueprint $table) {
-            $table->string('tag');
-            $table->string('description');
+        Schema::table('fences', function (Blueprint $table) {
+            $table->integer('deaths');
+            $table->integer('recovered');
+            $table->integer('confirmed');
         });
     }
 
@@ -26,8 +27,8 @@ class UpdateRegionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('regions', function (Blueprint $table) {
-            $table->dropColumn(['tag','description']);
+        Schema::table('fences', function (Blueprint $table) {
+            $table->dropColumn(['deaths','recovered', 'confirmed']);
         });
     }
 }
