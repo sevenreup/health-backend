@@ -32,7 +32,7 @@ class AuthController extends Controller
             'phone' => 'required|string|unique:users',
             'password' => 'required|string|confirmed'
         ]);
-        $credintials = request(['email', 'password']);
+        $credintials = request(['phone', 'password']);
         if(!Auth::attempt($credintials)) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
@@ -42,7 +42,9 @@ class AuthController extends Controller
 
         return response()->json([
             'access_token' => $token,
-            'token_type' => 'Bearer'
+            'token_type' => 'Bearer',
+            'name' => $user->first_name." ".$user->last_name,
+            'phone' => $user->phone
         ]);
 
     }
