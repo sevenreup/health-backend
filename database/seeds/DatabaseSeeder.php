@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use DB;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,6 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Eloquent::unguard();
         // $this->call(UserSeeder::class);
+
+        $path = storage_path('app/fencesql.sql');
+        DB::unprepared(file_get_contents($path));
+        $this->command->info('Fences table seeded!');
     }
 }
