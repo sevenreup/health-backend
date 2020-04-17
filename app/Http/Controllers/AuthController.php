@@ -15,7 +15,7 @@ class AuthController extends Controller
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'phone' => 'required|string|unique:users',
-            'password' => 'required|string|confirmed'
+            'password' => 'required|string'
         ]);
 
         $user = new User([
@@ -32,7 +32,7 @@ class AuthController extends Controller
     private function login(Request $request) {
         $request->validate([
             'phone' => 'required|string|unique:users',
-            'password' => 'required|string|confirmed'
+            'password' => 'required|string'
         ]);
         $credintials = request(['phone', 'password']);
         if(!Auth::attempt($credintials)) {
