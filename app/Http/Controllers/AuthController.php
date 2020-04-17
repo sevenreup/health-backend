@@ -24,7 +24,8 @@ class AuthController extends Controller
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
         ]);
-
+        error_log($request->first_name);
+        error_log($user);
         $user->save();
         return response()->json([ 'message' => 'User created'], 201);
     }
