@@ -21,10 +21,11 @@ class AuthController extends Controller
         $user = new User([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'phone' => $request->email,
+            'phone' => $request->phone,
             'password' => Hash::make($request->password),
         ]);
-
+        error_log($request->first_name);
+        error_log($user);
         $user->save();
         return response()->json([ 'message' => 'User created'], 201);
     }
