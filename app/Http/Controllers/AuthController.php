@@ -32,7 +32,7 @@ class AuthController extends Controller
 
     public function login(Request $request) {
         $request->validate([
-            'phone' => 'required|string|unique:users',
+            'phone' => 'required|string',
             'password' => 'required|string'
         ]);
         $credintials = request(['phone', 'password']);
