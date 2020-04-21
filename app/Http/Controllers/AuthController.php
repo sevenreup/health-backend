@@ -29,7 +29,7 @@ class AuthController extends Controller
         return response()->json([ 'message' => 'User created'], 201);
     }
 
-    private function login(Request $request) {
+    public function login(Request $request) {
         $request->validate([
             'phone' => 'required|string|unique:users',
             'password' => 'required|string'
