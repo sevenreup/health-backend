@@ -9,7 +9,8 @@ class NotificationsController extends Controller
 {
     public function updateFirebaseToken(Request $request)
     {
-        $userData = $this->User->find($request->input('id'));
+        error_log($request);
+        $userData = $request->user();
         $userData->firebase_token = $request->input('firebase_token');
         $userData->save();
         //send notification to user as well as message
