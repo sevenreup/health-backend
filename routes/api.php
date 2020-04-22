@@ -30,12 +30,10 @@ Route::group(['prefix' => 'auth'], function () {
 Route::post('event/trigger', 'api\EventsController@triggerEvents');
 
 // Contact tracing routes
-Route::post('contact/add', 'api\ContactTracingController@addContact');
+
 Route::post('contact/verify/user', 'api\ContactTracingController@verifyContactUser');
 Route::post('contact/verify/guest', 'api\ContactTracingController@verifyContactGuest');
 
-//Notifications routes
-Route::post('updateFirebaseToken', 'api\NotificationsController@updateFirebaseToken');
 
 
 //user routes
@@ -49,8 +47,9 @@ Route::get('/users/{userId}/fences', 'api\UsersController@getUserLocations');
 Route::get('/fences', 'api\FencesController@getFences');
 Route::get('/fences/{fencesId}/users', 'api\FencesController@getUsersInFence');
 
+Route::group(['middleware' => 'auth:api'], function () {
+    //Notifications routes
+    Route::post('updateFirebaseToken', 'api\NotificationsController@updateFirebaseToken');
 
-
-
-
-
+    Route::post('contact/add', 'api\ContactTracingController@addContact');
+});
