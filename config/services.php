@@ -36,4 +36,8 @@ return [
         'whatsapp_from' => env('TWILIO_WHATSAPP_FROM')
       ],
 
+      'fcm' => [
+        'key' => env('FCM_SECRET_KEY')
+     ]
+
 ];

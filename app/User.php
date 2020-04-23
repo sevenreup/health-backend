@@ -54,6 +54,10 @@ class User extends Authenticatable
     {
         return $this->phone;
     }
+    public function routeNotificationForFcm($notification)
+{
+    return $this->firebase_token;
+}
 
 
     public function events()
