@@ -27,7 +27,7 @@ class AuthController extends Controller
         error_log($request->first_name);
         error_log($user);
         $user->save();
-        return response()->json([ 'message' => 'User created'], 201);
+        return response()->json([ 'status' => true, 'message' => 'User created'], 201);
     }
 
     public function login(Request $request) {
@@ -37,7 +37,7 @@ class AuthController extends Controller
         ]);
         $credintials = request(['phone', 'password']);
         if(!Auth::attempt($credintials)) {
-            return response()->json(['message' => 'Unauthorized'], 401);
+            return response()->json(['status' => true,'message' => 'Unauthorized'], 401);
         }
 
         $user = $request->user();
@@ -55,7 +55,7 @@ class AuthController extends Controller
     public function logout(Request $request) {
         $request->user()->token()->revoke();
 
-        return response()->json(['message' => 'Logged out']);
+        return response()->json(['status' => true,'message' => 'Logged out']);
     }
 
     public function username()
