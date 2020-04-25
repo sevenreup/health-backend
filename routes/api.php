@@ -41,6 +41,8 @@ Route::get('/users', 'api\UsersController@getUsers');
 Route::get('/users/{userId}', 'api\UsersController@getSingleUser');
 Route::get('/users/{userId}/contacts', 'api\UsersController@getUserContacts');
 Route::get('/users/{userId}/fences', 'api\UsersController@getUserLocations');
+Route::get('/users/{userId}/contacts/pending', 'api\UsersController@getPendingUserContacts');
+Route::get('/users/{userId}/contacts/rejected', 'api\UsersController@getRejectedUserContacts');
 
 
 //fences routes

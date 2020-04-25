@@ -18,8 +18,7 @@ class ContactTracingController extends Controller
             $data['recipient'] = $recipientData->id;
 
             $contactTracingUser->insert($data);
-        // $request->user()->notify(new AddContact($contactTracingUser));
-
+            $recipientData->notify(new AddedToContactFCM);
             //send notification to user as well as message
         }
         else

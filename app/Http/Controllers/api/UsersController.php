@@ -22,11 +22,21 @@ class UsersController extends Controller
     }
     public function getUserContacts($userId)
     {
-        return contactTraceUser::where('sender',$userId)->with('users')->get();
+        return contactTraceUser::where('sender',$userId)->where('status','accepted')->with('users')->get();
     }
     public function getUserLocations($userId)
     {
         return events::where('userId',$userId)->with('fences')->get();
     }
+    public function getPendingUserContacts($userId)
+    {
+        return contactTraceUser::where('sender',$userId)->where('status','pending')->with('users')->get();
+    }
+
+    public function getRejectedUserContacts($userId)
+    {
+        return contactTraceUser::where('sender',$userId)->where('status','rejected')->with('users')->get();
+    }
+
 }
 
