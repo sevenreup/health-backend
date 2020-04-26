@@ -50,7 +50,7 @@ Route::post('contact/verify/guest', 'api\ContactTracingController@verifyContactG
 
 //user routes
 Route::get('/users', 'api\UsersController@getUsers');
-Route::get('/users', 'api\UsersController@getSingleUser');
+Route::get('/users/single', 'api\UsersController@getSingleUser');
 Route::get('/users/contacts', 'api\UsersController@getUserContacts');
 Route::get('/users/fences', 'api\UsersController@getUserLocations');
 Route::get('/users/contacts/pending', 'api\UsersController@getPendingUserContacts');
