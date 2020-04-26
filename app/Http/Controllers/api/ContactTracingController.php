@@ -5,6 +5,8 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Notifications\AddContact;
+use Illuminate\Support\Facades\Auth;
+
 
 class ContactTracingController extends Controller
 {
@@ -14,7 +16,9 @@ class ContactTracingController extends Controller
         if($recipientData)
         {
             $data = [];
-            $data['sender'] =  $request->input('sender');
+            // $data['sender'] =  $request->input('sender');
+            $data['sender'] =  Auth::user()->id;
+
             $data['recipient'] = $recipientData->id;
 
             $contactTracingUser->insert($data);
@@ -24,7 +28,7 @@ class ContactTracingController extends Controller
         else
         {
             $data = [];
-            $data['sender'] =  $request->input('sender');
+            $data['sender'] =  Auth::user()->id;
             $data['recipientName'] =  $request->input('recipientName');
             $data['recipientNumber'] =  $request->input('recipientNumber');
             $contactTracingGuest->insert($data);

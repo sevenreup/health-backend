@@ -5,6 +5,7 @@ use App\events as events;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventsController extends Controller
 {
@@ -22,10 +23,10 @@ class EventsController extends Controller
         else
         {
             $data['type'] = 'exit';
-            $entryTime = $this->events->where('userId',$request->input('userId'))->orderby('id','desc')->first()->createdAt;
+            $entryTime = $this->events->where('userId',Auth::user()->id)->orderby('id','desc')->first()->createdAt;
             $data['duration'] = Carbon::now()->diffInMinutes($entryTime);
         }
-        $data['userId'] =  $request->input('userId');
+        $data['userId'] =  Auth::user()->id;
         $data['fencesId'] =  $request->input('fencesId');
         //check case data for this region and send notification.
 
@@ -37,5 +38,5 @@ class EventsController extends Controller
 
     }
 
-    
+
 }

@@ -13,38 +13,38 @@ class ContactsSeeder extends Seeder
     public function run()
     {
         ContactTraceUser::create([
-            'sender' => 1,
-            'recipient' => 2,
+            'sender' => 7,
+            'recipient' => 8,
             'status' => 'pending',
         ]);
         ContactTraceUser::create([
-            'sender' => 2,
-            'recipient' => 3,
+            'sender' => 8,
+            'recipient' => 9,
             'status' => 'rejected',
         ]);
         ContactTraceUser::create([
-            'sender' => 3,
-            'recipient' => 4,
+            'sender' => 9,
+            'recipient' => 10,
             'status' => 'accepted',
         ]);
         ContactTraceUser::create([
-            'sender' => 1,
-            'recipient' => 3,
+            'sender' => 7,
+            'recipient' => 11,
             'status' => 'rejected',
         ]);
         ContactTraceUser::create([
-            'sender' => 1,
-            'recipient' => 4,
+            'sender' => 7,
+            'recipient' => 12,
             'status' => 'accepted',
         ]);
         ContactTraceUser::create([
-            'sender' => 4,
-            'recipient' => 5,
+            'sender' => 7,
+            'recipient' => 13,
             'status' => 'pending',
         ]);
         ContactTraceUser::create([
-            'sender' => 4,
-            'recipient' => 6,
+            'sender' => 11,
+            'recipient' => 12,
             'status' => 'pending',
         ]);
 

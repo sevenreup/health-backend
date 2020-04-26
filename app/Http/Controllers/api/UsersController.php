@@ -8,6 +8,8 @@ use App\User as User;
 use App\contactTraceUser as contactTraceUser;
 use App\events as events;
 use App\fences as fences;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class UsersController extends Controller
@@ -16,26 +18,26 @@ class UsersController extends Controller
     {
         return User::orderby('id','desc')->get();
     }
-    public function getSingleUser($userId)
+    public function getSingleUser()
     {
-        return User::where('id',$userId)->take(1)->get();
+        return User::where('id',Auth::user()->id)->take(1)->get();
     }
-    public function getUserContacts($userId)
+    public function getUserContacts()
     {
-        return contactTraceUser::where('sender',$userId)->where('status','accepted')->with('users')->get();
+        return contactTraceUser::where('sender',Auth::user()->id)->where('status','accepted')->with('users')->get();
     }
-    public function getUserLocations($userId)
+    public function getUserLocations()
     {
-        return events::where('userId',$userId)->with('fences')->get();
+        return events::where('userId',Auth::user()->id)->with('fences')->get();
     }
-    public function getPendingUserContacts($userId)
+    public function getPendingUserContacts()
     {
-        return contactTraceUser::where('sender',$userId)->where('status','pending')->with('users')->get();
+        return contactTraceUser::where('sender',Auth::user()->id)->where('status','pending')->with('users')->get();
     }
 
-    public function getRejectedUserContacts($userId)
+    public function getRejectedUserContacts()
     {
-        return contactTraceUser::where('sender',$userId)->where('status','rejected')->with('users')->get();
+        return contactTraceUser::where('sender',Auth::user()->id)->where('status','rejected')->with('users')->get();
     }
 
 }
