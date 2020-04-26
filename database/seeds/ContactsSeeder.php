@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\ContactTraceUser;
+use App\contactTraceUser;
 
 class ContactsSeeder extends Seeder
 {
