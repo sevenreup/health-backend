@@ -24,52 +24,21 @@ class UsersController extends Controller
     }
     public function getUserContacts()
     {
-        // $contacts = contactTraceUser::where('sender',Auth::user()->id)->where('status','accepted')->with('User')->get();
+
         $contacts = contactTraceUser::select('id','recipient')->where('sender',Auth::user()->id)->where('status','accepted')->with('User:id,first_name,last_name,phone')->get();
-
-        // $response = [];
-        // foreach ($contacts as $contact) {
-        //     $response[] = $this->transform($contact);
-        // }
-        // return contactTraceUser::select('id','recipient')->where('sender',Auth::user()->id)->where('status','accepted')->with('User:id,first_name')->get();
-        // return response()->json([
-        //     'id' => $contacts->id,
-        //     'first_name' => $contacts->User->first_name,
-        //     'last_name' => $contacts->User->last_name,
-        //     'phone' => $contacts->User->phone,
-
-        // ]);
         return $contacts;
     }
-    public function getUserContactsTry()
-    {
-        $contacts = contactTraceUser::select('id','recipient')->where('sender',Auth::user()->id)->where('status','accepted')->with('User:id,first_name,last_name,phone')->get();
-        // $response = [];
-        // foreach ($contacts as $contact) {
-        //     $response[] = $this->transform($contact);
-        // }
-        // return contactTraceUser::select('id','recipient')->where('sender',Auth::user()->id)->where('status','accepted')->with('User:id,first_name')->get();
-        // return response()->json([
-        //     'id' => $contacts->id,
-        //     'first_name' => $contacts->User->first_name,
-        //     'last_name' => $contacts->User->last_name,
-        //     'phone' => $contacts->User->phone,
 
-        // ]);
-        return $contacts;
-    }
-    public function transform(contactTraceUser $contact) {
-        return [
-            'username' => $contact->id,
-        ];
-    }
+
     public function getUserLocations()
     {
         return events::where('userId',Auth::user()->id)->with('fences')->get();
     }
     public function getPendingUserContacts()
     {
-        return contactTraceUser::where('sender',Auth::user()->id)->where('status','pending')->with('User')->get();
+        $contacts = contactTraceUser::select('id','recipient')->where('sender',Auth::user()->id)->where('status','pending')->with('User:id,first_name,last_name,phone')->get();
+        return $contacts;
+
     }
 
     public function getRejectedUserContacts()

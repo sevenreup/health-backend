@@ -35,6 +35,8 @@ Route::get('/fences/{fencesId}/users', 'api\FencesController@getUsersInFence');
 Route::group(['middleware' => 'auth:api'], function () {
     //Notifications routes
     Route::post('updateFirebaseToken', 'api\NotificationsController@updateFirebaseToken');
+
+
     Route::post('contact/add', 'api\ContactTracingController@addContact');
 
 
