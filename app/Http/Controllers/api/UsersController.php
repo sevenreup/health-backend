@@ -48,7 +48,7 @@ class UsersController extends Controller
 
     public function searchUsers($query)
     {
-        return User::where('first_name','LIKE',$query)->orWhere('last_name','LIKE',$query)->orWhere('phone','LIKE',$query)->get();
+        return User::where('first_name','LIKE','%'.$query.'%')->orWhere('last_name','LIKE','%'.$query.'%')->orWhere('phone','LIKE','%'.$query.'%')->get();
     }
 
 }
