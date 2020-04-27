@@ -67,6 +67,6 @@ class User extends Authenticatable
 
     public function contactTraceUser()
     {
-        return $this->hasMany('App\contactTraceUser', 'sender');
+        return $this->hasMany('App\contactTraceUser', 'recipient');
     }
 }
