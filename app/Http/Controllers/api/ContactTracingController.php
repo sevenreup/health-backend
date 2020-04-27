@@ -22,8 +22,8 @@ class ContactTracingController extends Controller
     }
     public function addContact(request $request,contactTraceUser $contactTraceUser,contactTraceGuest $contactTraceGuest)
     {
-        error_log($request->input('recipientNumber')[0]);
         for ($i = 0; $i < count($request->all()); $i++) {
+            error_log($request->input('recipientNumber')[$i]);
 
         $recipientData = $this->User->where('phone',$request->input('recipientNumber')[$i] )->get();
         if($recipientData)
