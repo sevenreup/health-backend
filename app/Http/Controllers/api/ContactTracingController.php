@@ -63,7 +63,7 @@ class ContactTracingController extends Controller
 
     public function verifyContactGuest(request $request,contactTraceUser $contactTraceUser,contactTraceGuest $contactTraceGuest)
     {
-        $userData = $this->contactTracingGuest->find($request->input('id'));
+        $userData = $this->contactTraceGuest->find($request->input('id'));
         $userData->status = $request->input('status');
         $userData->save();
         //send notification to user as well as message
