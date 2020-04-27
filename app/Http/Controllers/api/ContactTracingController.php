@@ -22,9 +22,9 @@ class ContactTracingController extends Controller
     }
     public function addContact(request $request,contactTraceUser $contactTraceUser,contactTraceGuest $contactTraceGuest)
     {
-        // for ($i = 0; $i < count($request->all()); $i++) {
+        for ($i = 0; $i < count($request->all()); $i++) {
 
-        $recipientData = $this->User->where('phone',$request->input('recipientNumber') )->first();
+        $recipientData = $this->User->where('phone',$request->input('recipientNumber')[$i] )->first();
         if($recipientData)
         {
                 $data = [];
@@ -44,7 +44,7 @@ class ContactTracingController extends Controller
             //send notification to user as well as message
 
         }
-    // }
+    }
 
 
 
