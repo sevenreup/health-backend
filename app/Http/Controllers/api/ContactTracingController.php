@@ -53,6 +53,7 @@ class ContactTracingController extends Controller
 
     public function verifyContactUser(request $request,contactTraceUser $contactTraceUser,contactTraceGuest $contactTraceGuest)
     {
+        error_log($request);
         $userData = $this->contactTraceUser->find($request->input('id'));
         $userData->status = $request->input('status');
         $userData->save();
