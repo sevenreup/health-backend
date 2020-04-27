@@ -24,19 +24,19 @@ class UsersController extends Controller
     }
     public function getUserContacts()
     {
-        $contacts = contactTraceUser::where('sender',Auth::user()->id)->where('status','accepted')->with('User')->get();
-        $response = [];
-        foreach ($contacts as $contact) {
-            $response[] = $this->transform($contact);
-        }
+        $contacts = contactTraceUser::where('sender',Auth::user()->id)->where('status','accepted')->with('User')->get()->toArray();
+        // $response = [];
+        // foreach ($contacts as $contact) {
+        //     $response[] = $this->transform($contact);
+        // }
         // return contactTraceUser::select('id','recipient')->where('sender',Auth::user()->id)->where('status','accepted')->with('User:id,first_name')->get();
-        // return response()->json([
-        //     'id' => $contacts->id,
-        //     'first_name' => $contacts->User->first_name,
-        //     'last_name' => $contacts->User->last_name,
-        //     'phone' => $contacts->User->phone,
+        return response()->json([
+            'id' => $contacts->id,
+            'first_name' => $contacts->User->first_name,
+            'last_name' => $contacts->User->last_name,
+            'phone' => $contacts->User->phone,
 
-        // ]);
+        ]);
         // return $contacts;
     }
     public function transform(contactTraceUser $contact) {
