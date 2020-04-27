@@ -26,14 +26,13 @@ class UsersController extends Controller
     {
         $contacts = contactTraceUser::where('sender',Auth::user()->id)->where('status','accepted')->with('User')->get()->toJson();
         // return contactTraceUser::select('id','recipient')->where('sender',Auth::user()->id)->where('status','accepted')->with('User:id,first_name')->get();
-        // return response()->json([
-        //     'id' => $contacts->id,
-        //     'first_name' => $contacts->User->first_name,
-        //     'last_name' => $contacts->User->last_name,
-        //     'phone' => $contacts->User->phone,
-
-        // ]);
-        return $contacts;
+        return response()->json([
+            'id' => $contacts->id,
+            'first_name' => $contacts->User->first_name,
+            'last_name' => $contacts->User->last_name,
+            'phone' => $contacts->User->phone,
+        ]);
+        // return $contacts;
     }
     public function getUserLocations()
     {
