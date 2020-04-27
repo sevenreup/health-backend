@@ -28,9 +28,9 @@ class UsersController extends Controller
 
         return response()->json([
             'id' => $contacts->id,
-            'first_name' => $contacts->users->first_name,
-            'last_name' => $contacts->users->last_name,
-            'phone' => $contacts->users->phone,
+            'first_name' => $contacts->User->first_name,
+            'last_name' => $contacts->User->last_name,
+            'phone' => $contacts->User->phone,
 
         ]);
     }
