@@ -20,16 +20,16 @@ class ContactTracingController extends Controller
     }
     public function addContact(request $request,contactTraceUser $contactTraceUser,contactTraceGuest $contactTraceGuest)
     {
-        $recipientData = $this->User->where('phone',$request->input('recipientNumber') )->get();
+        for ($i = 0; $i < count($request->all()); $i++) {
+
+        $recipientData = $this->User->where('phone',$request->input('recipientNumber')[$i] )->get();
         if($recipientData)
         {
-            $data = [];
-            // $data['sender'] =  $request->input('sender');
-            $data['sender'] =  Auth::user()->id;
-
-            $data['recipient'] = $recipientData->id;
-
-            $contactTraceUser->insert($data);
+            $data = $request->all();
+                $data = [];
+                $data['sender'] =  Auth::user()->id;
+                $data['recipient'] = $recipientData->id;
+                $contactTraceUser->insert($data);
             // $recipientData->notify(new AddedToContactFCM);
             //send notification to user as well as message
         }
@@ -43,6 +43,8 @@ class ContactTracingController extends Controller
             //send notification to user as well as message
 
         }
+    }
+
 
 
         return response()->json(['status' => true,'message'=>'contact added'],200);
