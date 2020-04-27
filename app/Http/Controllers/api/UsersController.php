@@ -24,7 +24,6 @@ class UsersController extends Controller
     }
     public function getUserContacts()
     {
-
         $contacts = contactTraceUser::select('id','recipient')->where('sender',Auth::user()->id)->where('status','accepted')->with('User:id,first_name,last_name,phone')->get();
         return $contacts;
     }
@@ -33,19 +32,23 @@ class UsersController extends Controller
     public function getUserLocations()
     {
         $events = events::where('userId',Auth::user()->id)->with('fences')->get();
-
         return $events;
     }
     public function getPendingUserContacts()
     {
         $contacts = contactTraceUser::select('id','recipient')->where('sender',Auth::user()->id)->where('status','pending')->with('User:id,first_name,last_name,phone')->get();
         return $contacts;
-
     }
 
     public function getRejectedUserContacts()
     {
         return contactTraceUser::where('sender',Auth::user()->id)->where('status','rejected')->with('User')->get();
+    }
+
+
+    public function searchUsers($query)
+    {
+        return User::where('first_name','LIKE',$query)->orWhere('last_name','LIKE',$query)->orWhere('phone','LIKE',$query)->get();
     }
 
 }

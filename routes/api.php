@@ -28,34 +28,50 @@ Route::group(['prefix' => 'auth'], function () {
 
 
 
-//fences routes
-Route::get('/fences', 'api\FencesController@getFences');
-Route::get('/fences/{fencesId}/users', 'api\FencesController@getUsersInFence');
+// start of routes for mobile application
 
 Route::group(['middleware' => 'auth:api'], function () {
-    //Notifications routes
-    Route::post('updateFirebaseToken', 'api\NotificationsController@updateFirebaseToken');
+//Notifications routes
+Route::post('updateFirebaseToken', 'api\NotificationsController@updateFirebaseToken');
+
+// add contact route
+Route::post('contact/add', 'api\ContactTracingController@addContact');
 
 
-    Route::post('contact/add', 'api\ContactTracingController@addContact');
-
-
-    // event routes
+// event routes
 Route::post('event/trigger', 'api\EventsController@triggerEvents');
 
-// Contact tracing routes
 
+// Contact tracing routes
 Route::post('contact/verify/user', 'api\ContactTracingController@verifyContactUser');
 Route::post('contact/verify/guest', 'api\ContactTracingController@verifyContactGuest');
 
 
 
 //user routes
-Route::get('/users', 'api\UsersController@getUsers');
 Route::get('/users/single', 'api\UsersController@getSingleUser');
 Route::get('/users/contacts', 'api\UsersController@getUserContacts');
 Route::get('/users/fences', 'api\UsersController@getUserLocations');
 Route::get('/users/contacts/pending', 'api\UsersController@getPendingUserContacts');
 Route::get('/users/contacts/rejected', 'api\UsersController@getRejectedUserContacts');
 
+
+
 });
+// end of routes for mobile application
+
+// start of dashboard routes
+Route::get('/users', 'api\UsersController@getUsers');
+
+Route::get('/users/{query}', 'api\UsersController@searchUsers');
+
+
+
+//fences routes
+Route::get('/fences', 'api\FencesController@getFences');
+Route::get('/fences/{fencesId}/users', 'api\FencesController@getUsersInFence');
+
+
+
+// end of dashboard routes
+
