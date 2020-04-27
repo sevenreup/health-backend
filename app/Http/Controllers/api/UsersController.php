@@ -33,7 +33,7 @@ class UsersController extends Controller
         //     'phone' => $contacts->User->phone,
 
         // ]);
-        return $contacts->id;
+        return $contacts->user->id;
     }
     public function getUserLocations()
     {
