@@ -6,19 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Notifications\AddContact;
 use Illuminate\Support\Facades\Auth;
-use App\contactTracingUser as contactTracingUser;
-use App\contactTracingGuest as contactTracingGuest;
+use App\contactTraceUser as contactTraceUser;
+use App\contactTraceGuest as contactTraceGuest;
 
 
 class ContactTracingController extends Controller
 {
-    public function __construct(contactTracingGuest $contactTracingGuest,devotional $devotional,contactTracingUser $contactTracingUser)
+    public function __construct(contactTraceGuest $contactTraceGuest,devotional $devotional,contactTraceUser $contactTraceUser)
     {
-        $this->contactTracingGuest = $contactTracingGuest;
-        $this->contactTracingUser = $contactTracingUser;
+        $this->contactTraceGuest = $contactTraceGuest;
+        $this->contactTraceUser = $contactTraceUser;
 
     }
-    public function addContact(request $request,contactTracingUser $contactTracingUser,contactTracingGuest $contactTracingGuest)
+    public function addContact(request $request,contactTraceUser $contactTraceUser,contactTraceGuest $contactTraceGuest)
     {
         $recipientData = $this->User->where('phone',$request->input('recipientNumber') )->get();
         if($recipientData)
@@ -29,7 +29,7 @@ class ContactTracingController extends Controller
 
             $data['recipient'] = $recipientData->id;
 
-            $contactTracingUser->insert($data);
+            $contactTraceUser->insert($data);
             // $recipientData->notify(new AddedToContactFCM);
             //send notification to user as well as message
         }
@@ -39,7 +39,7 @@ class ContactTracingController extends Controller
             $data['sender'] =  Auth::user()->id;
             $data['recipientName'] =  $request->input('recipientName');
             $data['recipientNumber'] =  $request->input('recipientNumber');
-            $contactTracingGuest->insert($data);
+            $contactTraceGuest->insert($data);
             //send notification to user as well as message
 
         }
@@ -51,9 +51,9 @@ class ContactTracingController extends Controller
     }
 
 
-    public function verifyContactUser(request $request,contactTracingUser $contactTracingUser,contactTracingGuest $contactTracingGuest)
+    public function verifyContactUser(request $request,contactTraceUser $contactTraceUser,contactTraceGuest $contactTraceGuest)
     {
-        $userData = $this->contactTracingUser->find($request->input('id'));
+        $userData = $this->contactTraceUser->find($request->input('id'));
         $userData->status = $request->input('status');
         $userData->save();
         //send notification to user as well as message
@@ -61,7 +61,7 @@ class ContactTracingController extends Controller
 
     }
 
-    public function verifyContactGuest(request $request,contactTracingUser $contactTracingUser,contactTracingGuest $contactTracingGuest)
+    public function verifyContactGuest(request $request,contactTraceUser $contactTraceUser,contactTraceGuest $contactTraceGuest)
     {
         $userData = $this->contactTracingGuest->find($request->input('id'));
         $userData->status = $request->input('status');
