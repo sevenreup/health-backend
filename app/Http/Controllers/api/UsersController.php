@@ -16,7 +16,7 @@ class UsersController extends Controller
 {
     public function getUsers()
     {
-        return User::orderby('id','desc');
+        return User::orderby('id','desc')->get();
     }
     public function getPaginatedUsers($query)
     {
