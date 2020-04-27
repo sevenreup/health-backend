@@ -8,14 +8,16 @@ use App\Notifications\AddContact;
 use Illuminate\Support\Facades\Auth;
 use App\contactTraceUser as contactTraceUser;
 use App\contactTraceGuest as contactTraceGuest;
+use App\User as User;
 
 
 class ContactTracingController extends Controller
 {
-    public function __construct(contactTraceGuest $contactTraceGuest,contactTraceUser $contactTraceUser)
+    public function __construct(contactTraceGuest $contactTraceGuest,contactTraceUser $contactTraceUser,User $User)
     {
         $this->contactTraceGuest = $contactTraceGuest;
         $this->contactTraceUser = $contactTraceUser;
+        $this->User = $User;
 
     }
     public function addContact(request $request,contactTraceUser $contactTraceUser,contactTraceGuest $contactTraceGuest)
