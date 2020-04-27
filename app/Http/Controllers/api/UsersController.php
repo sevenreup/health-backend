@@ -24,7 +24,9 @@ class UsersController extends Controller
     }
     public function getUserContacts()
     {
-        $contacts = contactTraceUser::where('sender',Auth::user()->id)->where('status','accepted')->with('User')->get();
+        // $contacts = contactTraceUser::where('sender',Auth::user()->id)->where('status','accepted')->with('User')->get();
+        $contacts = contactTraceUser::select('id','recipient')->where('sender',Auth::user()->id)->where('status','accepted')->with('User:id,first_name,last_name,phone')->get();
+
         // $response = [];
         // foreach ($contacts as $contact) {
         //     $response[] = $this->transform($contact);
