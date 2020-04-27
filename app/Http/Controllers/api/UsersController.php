@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
-    public function getUsers($query)
+    public function getUsers()
+    {
+        return User::orderby('id','desc')->paginate();
+    }
+    public function getPaginatedUsers($query)
     {
         return User::orderby('id','desc')->paginate($query);
     }
