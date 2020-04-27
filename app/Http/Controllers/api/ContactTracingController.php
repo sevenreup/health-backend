@@ -12,7 +12,7 @@ use App\contactTraceGuest as contactTraceGuest;
 
 class ContactTracingController extends Controller
 {
-    public function __construct(contactTraceGuest $contactTraceGuest,devotional $devotional,contactTraceUser $contactTraceUser)
+    public function __construct(contactTraceGuest $contactTraceGuest,contactTraceUser $contactTraceUser)
     {
         $this->contactTraceGuest = $contactTraceGuest;
         $this->contactTraceUser = $contactTraceUser;
