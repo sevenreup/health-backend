@@ -27,7 +27,7 @@ class EventsController extends Controller
             $data['duration'] = Carbon::now()->diffInMinutes($entryTime);
         }
         $data['userId'] =  Auth::user()->id;
-        $data['fencesId'] =  $request->input('fencesId');
+        $data['fencesId'] =  $request->input('geofence.externalId');
         //check case data for this region and send notification.
 
         $events->insert($data);

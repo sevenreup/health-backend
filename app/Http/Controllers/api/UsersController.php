@@ -32,7 +32,9 @@ class UsersController extends Controller
 
     public function getUserLocations()
     {
-        return events::where('userId',Auth::user()->id)->with('fences')->get();
+        $events = events::where('userId',Auth::user()->id)->with('fences')->get();
+
+        return $events;
     }
     public function getPendingUserContacts()
     {
