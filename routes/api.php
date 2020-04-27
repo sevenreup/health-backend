@@ -61,7 +61,7 @@ Route::get('/users/contacts/rejected', 'api\UsersController@getRejectedUserConta
 // end of routes for mobile application
 
 // start of dashboard routes
-Route::get('/users', 'api\UsersController@getUsers');
+Route::get('/users/{query}', 'api\UsersController@getUsers');
 
 Route::get('/users/search/{query}', 'api\UsersController@searchUsers');
 

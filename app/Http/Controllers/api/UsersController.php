@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
-    public function getUsers()
+    public function getUsers($query)
     {
-        return User::orderby('id','desc')->get();
+        return User::orderby('id','desc')->paginate($query);
     }
     public function getSingleUser()
     {
@@ -48,7 +48,7 @@ class UsersController extends Controller
 
     public function searchUsers($query)
     {
-        return User::select('id','first_name','last_name','phone')->where('first_name','ilike','%'.$query.'%')->orWhere('last_name','ilike','%'.$query.'%')->orWhere('phone','ilike','%'.$query.'%')->get();
+        return User::where('first_name','ilike','%'.$query.'%')->orWhere('last_name','ilike','%'.$query.'%')->orWhere('phone','ilike','%'.$query.'%')->get();
     }
 
 }
