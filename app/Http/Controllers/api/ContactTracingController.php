@@ -6,10 +6,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Notifications\AddContact;
 use Illuminate\Support\Facades\Auth;
+use App\contactTracingUser as contactTracingUser;
+use App\contactTracingGuest as contactTracingGuest;
 
 
 class ContactTracingController extends Controller
 {
+    public function __construct(contactTracingGuest $contactTracingGuest,devotional $devotional,contactTracingUser $contactTracingUser)
+    {
+        $this->contactTracingGuest = $contactTracingGuest;
+        $this->contactTracingUser = $contactTracingUser;
+
+    }
     public function addContact(request $request,contactTracingUser $contactTracingUser,contactTracingGuest $contactTracingGuest)
     {
         $recipientData = $this->User->where('phone',$request->input('recipientNumber') )->get();
@@ -22,7 +30,7 @@ class ContactTracingController extends Controller
             $data['recipient'] = $recipientData->id;
 
             $contactTracingUser->insert($data);
-            $recipientData->notify(new AddedToContactFCM);
+            // $recipientData->notify(new AddedToContactFCM);
             //send notification to user as well as message
         }
         else
