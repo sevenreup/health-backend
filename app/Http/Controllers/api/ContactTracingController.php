@@ -23,29 +23,29 @@ class ContactTracingController extends Controller
     public function addContact(request $request,contactTraceUser $contactTraceUser,contactTraceGuest $contactTraceGuest)
     {
         error_log($request->input('contacts'));
-        for ($i = 0; $i < count($request->all()); $i++) {
+    //     for ($i = 0; $i < count($request->all()); $i++) {
 
-        $recipientData = $this->User->where('phone',$request->input('recipientNumber')[$i] )->first();
-        if($recipientData)
-        {
-                $data = [];
-                $data['sender'] =  Auth::user()->id;
-                $data['recipient'] = $recipientData->id;
-                $contactTraceUser->insert($data);
-            // $recipientData->notify(new AddedToContactFCM);
-            //send notification to user as well as message
-        }
-        else
-        {
-            $data = [];
-            $data['sender'] =  Auth::user()->id;
-            $data['recipientName'] =  $request->input('recipientName')[$i];
-            $data['recipientNumber'] =  $request->input('recipientNumber')[$i];
-            $contactTraceGuest->insert($data);
-            //send notification to user as well as message
+    //     $recipientData = $this->User->where('phone',$request->input('recipientNumber')[$i] )->first();
+    //     if($recipientData)
+    //     {
+    //             $data = [];
+    //             $data['sender'] =  Auth::user()->id;
+    //             $data['recipient'] = $recipientData->id;
+    //             $contactTraceUser->insert($data);
+    //         // $recipientData->notify(new AddedToContactFCM);
+    //         //send notification to user as well as message
+    //     }
+    //     else
+    //     {
+    //         $data = [];
+    //         $data['sender'] =  Auth::user()->id;
+    //         $data['recipientName'] =  $request->input('recipientName')[$i];
+    //         $data['recipientNumber'] =  $request->input('recipientNumber')[$i];
+    //         $contactTraceGuest->insert($data);
+    //         //send notification to user as well as message
 
-        }
-    }
+    //     }
+    // }
 
 
 
