@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class contactTracing extends Model
 {
     //
-    public function contacts()
+    public function contact()
     {
-        return $this->belongsTo('App\contacts', 'recipient');
+        return $this->belongsTo('App\contact', 'recipient');
     }
 }
