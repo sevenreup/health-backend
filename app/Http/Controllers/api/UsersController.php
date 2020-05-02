@@ -24,16 +24,16 @@ class UsersController extends Controller
         //     'name' => 'Abigail',
         //     'state' => 'CA'
         // ]);
-        $users = User::all();
-        $data=array();
-        foreach ($users as $usr) {
-            $data[] = $usr->id;
-        }
-        return response()->json([
-            'user_data'=>$users
+        // $users = User::select('id')->get();
+        // $data=array();
+        // foreach ($users as $usr) {
+        //     $data[] = $usr->id;
+        // }
+        // return response()->json([
+        //     'user_data'=>$users
 
-        ]);
-        // return User::select('id','first_name as name')->orderby('id','desc')->get();
+        // ]);
+        return User::select('id','first_name as name')->orderby('id','desc')->get();
     }
     public function getPaginatedUsers($query)
     {
