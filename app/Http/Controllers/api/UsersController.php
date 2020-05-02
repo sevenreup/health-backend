@@ -21,7 +21,7 @@ class UsersController extends Controller
     public function getNodes()
     {
 
-        return User::select('id','first_name as name')->orderby('id','desc')->get();
+        return User::select('id','first_name','last_name','phone')->orderby('id','desc')->get();
 
     }
     public function getLinks()
