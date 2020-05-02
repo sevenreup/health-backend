@@ -22,7 +22,9 @@ class ContactTracingController extends Controller
     }
     public function addContact(request $request,contactTraceUser $contactTraceUser,contactTraceGuest $contactTraceGuest)
     {
-        error_log($request->input('recipientNumber'));
+
+        error_log(json_decode($request));
+
         $recipientData = $this->User->where('phone',$request->input('recipientNumber') )->first();
         $data = [];
                 $data['sender'] =  Auth::user()->id;
