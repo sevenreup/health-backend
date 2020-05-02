@@ -25,24 +25,24 @@ class ContactTracingController extends Controller
         error_log($request);
         for ($i = 0; $i < count($request->all()); $i++) {
 
-        $recipientData = $this->User->where('phone',$request->input('recipientNumber')[$i] )->first();
+        $recipientData = $this->User->where('phone',$request->input('recipientNumber') )->first();
         if($recipientData)
         {
                 $data = [];
                 $data['sender'] =  Auth::user()->id;
                 $data['recipient'] = $recipientData->id;
                 $contactTraceUser->insert($data);
-            // $recipientData->notify(new AddedToContactFCM);
-            //send notification to user as well as message
+                // $recipientData->notify(new AddedToContactFCM);
+                //send notification to user as well as message
         }
         else
         {
-            $data = [];
-            $data['sender'] =  Auth::user()->id;
-            $data['recipientName'] =  $request->input('recipientName')[$i];
-            $data['recipientNumber'] =  $request->input('recipientNumber')[$i];
-            $contactTraceGuest->insert($data);
-            //send notification to user as well as message
+                $data = [];
+                $data['sender'] =  Auth::user()->id;
+                $data['recipientName'] =  $request->input('recipientName');
+                $data['recipientNumber'] =  $request->input('recipientNumber');
+                $contactTraceGuest->insert($data);
+                //send notification to user as well as message
 
         }
     }

@@ -8,6 +8,7 @@ use App\User as User;
 use App\contactTraceUser as contactTraceUser;
 use App\events as events;
 use App\fences as fences;
+use App\contact as contact;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -48,6 +49,20 @@ class UsersController extends Controller
         $contacts = contactTraceUser::select('id','recipient')->where('sender',Auth::user()->id)->where('status','accepted')->with('User:id,first_name,last_name,phone')->get();
         return $contacts;
     }
+
+    // for testing
+    public function getUserContactsTesting()
+    {
+        $user_id = contact::where('phone',Auth::user()->phone)->first()->id;
+        $contacts = ContactTracing::select('id','recipient')->where('sender',$user_id)->where('status','accepted')->with('contacts:id,first_name,last_name,phone')->get();
+        return $contacts;
+    }
+    public function getPendingUserContactsTesting()
+    {
+        $contacts = ContactTracing::select('id','recipient')->where('sender',$user_id)->where('status','pending')->with('contacts:id,first_name,last_name,phone')->get();
+        return $contacts;
+    }
+    // end for for testing
 
 
     public function getUserLocations()

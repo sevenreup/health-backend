@@ -56,6 +56,11 @@ Route::get('/users/contacts/pending', 'api\UsersController@getPendingUserContact
 Route::get('/users/contacts/rejected', 'api\UsersController@getRejectedUserContacts');
 
 
+//user testing routes
+Route::get('/testing/users/contacts', 'api\UsersController@getUserContactsTesting');
+Route::get('/testing/users/contacts/pending', 'api\UsersController@getPendingUserContactsTesting');
+
+
 
 });
 // end of routes for mobile application
