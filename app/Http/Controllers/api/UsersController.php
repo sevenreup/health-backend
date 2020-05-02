@@ -26,6 +26,10 @@ class UsersController extends Controller
     {
         return User::where('id',Auth::user()->id)->take(1)->get();
     }
+    public function getSingleUserDash($userId)
+    {
+        return User::where('id',$userId)->take(1)->get();
+    }
     public function getUserContacts()
     {
         $contacts = contactTraceUser::select('id','recipient')->where('sender',Auth::user()->id)->where('status','accepted')->with('User:id,first_name,last_name,phone')->get();
