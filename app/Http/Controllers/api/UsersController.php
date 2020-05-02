@@ -24,7 +24,13 @@ class UsersController extends Controller
         //     'name' => 'Abigail',
         //     'state' => 'CA'
         // ]);
-        return User::select('id as iddd')->orderby('id','desc')->get();
+        $users = User::all();
+        $data =[];
+        foreach ($users as $usr) {
+            $data['id'] = $usr->id;
+        }
+        return response()->json($data);
+        // return User::select('id','first_name as name')->orderby('id','desc')->get();
     }
     public function getPaginatedUsers($query)
     {
