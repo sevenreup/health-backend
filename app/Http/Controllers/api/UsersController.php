@@ -27,12 +27,12 @@ class UsersController extends Controller
         $users = User::all();
         $data=array();
         foreach ($users as $usr) {
-            $data[] = $usr->id;
-        }
-        return response()->json([
-            'id'=>$data
+            return response()->json([
+                'id'=>$usr->id
 
-        ]);
+            ]);
+        }
+
         // return User::select('id','first_name as name')->orderby('id','desc')->get();
     }
     public function getPaginatedUsers($query)
