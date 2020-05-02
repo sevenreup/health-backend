@@ -33,7 +33,11 @@ class UsersController extends Controller
         //     'user_data'=>$users
 
         // ]);
-        return User::select('id','first_name as name')->orderby('id','desc')->get();
+        $users= User::select('id','first_name as name')->orderby('id','desc')->get();
+        return response()->json([
+            'user_data'=>$users
+
+        ]);
     }
     public function getPaginatedUsers($query)
     {
