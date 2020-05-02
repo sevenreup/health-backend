@@ -18,6 +18,14 @@ class UsersController extends Controller
     {
         return User::orderby('id','desc')->get();
     }
+    public function getNodes()
+    {
+        // return response()->json([
+        //     'name' => 'Abigail',
+        //     'state' => 'CA'
+        // ]);
+        return User::select('id as iddd')->orderby('id','desc')->get();
+    }
     public function getPaginatedUsers($query)
     {
         return User::orderby('id','desc')->paginate($query);
