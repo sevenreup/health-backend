@@ -53,8 +53,8 @@ class UsersController extends Controller
     // for testing
     public function getUserContactsTesting()
     {
-        $user_id = contact::where('phone',Auth::user()->phone)->first()->id;
-        $contacts = ContactTracing::select('id','recipient')->where('sender',$user_id)->where('status','accepted')->with('contacts:id,first_name,last_name,phone')->get();
+        $user_id = contact::where('recipientNumber',Auth::user()->phone)->first()->id;
+        $contacts = ContactTracing::select('id','recipient')->where('sender',$user_id)->where('status','accepted')->with('contacts:id,recipientName,recipientNumber as phone')->get();
         return $contacts;
     }
     public function getPendingUserContactsTesting()
