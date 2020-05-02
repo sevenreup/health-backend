@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User as User;
 use App\contactTraceUser as contactTraceUser;
-use App\ContactTracing as ContactTracing;
+use App\contactTracing as contactTracing;
 use App\events as events;
 use App\fences as fences;
 use App\contact as contact;
@@ -55,7 +55,7 @@ class UsersController extends Controller
     public function getUserContactsTesting()
     {
         $user_id = contact::where('recipientNumber',Auth::user()->phone)->first()->id;
-        $contacts = ContactTracing::select('id','recipient')->where('sender',$user_id)->where('status','accepted')->with('contacts:id,recipientName,recipientNumber as phone')->get();
+        $contacts = contactTracing::select('id','recipient')->where('sender',$user_id)->where('status','accepted')->with('contacts:id,recipientName,recipientNumber as phone')->get();
         return $contacts;
     }
     public function getPendingUserContactsTesting()
