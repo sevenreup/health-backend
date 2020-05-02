@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User as User;
 use App\contactTraceUser as contactTraceUser;
+use App\ContactTracing as ContactTracing;
 use App\events as events;
 use App\fences as fences;
 use App\contact as contact;
