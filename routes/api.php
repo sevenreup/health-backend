@@ -63,6 +63,7 @@ Route::get('/users/contacts/rejected', 'api\UsersController@getRejectedUserConta
 // start of dashboard routes
 Route::get('/users', 'api\UsersController@getUsers');
 Route::get('/nodes', 'api\UsersController@getNodes');
+Route::get('/links', 'api\UsersController@getLinks');
 Route::get('/users/single/{userId}', 'api\UsersController@getSingleUserDash');
 Route::get('/users/paginate/{query}', 'api\UsersController@getPaginatedUsers');
 
