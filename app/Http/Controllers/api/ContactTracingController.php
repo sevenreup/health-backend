@@ -24,7 +24,9 @@ class ContactTracingController extends Controller
     {
 
         error_log($request);
-        $t=$request->all()->toArray();
+        $t=$request->all();
+        error_log($t['recipientNumber']);
+
 
         $recipientData = $this->User->where('phone',$request->input('recipientNumber') )->first();
         $data = [];
