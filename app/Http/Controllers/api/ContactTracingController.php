@@ -24,7 +24,7 @@ class ContactTracingController extends Controller
     {
 
         error_log($request);
-        $t=$request->all();
+        $t=$request->toArray();
         error_log($t['recipientNumber'][0]);
 
 
