@@ -24,38 +24,35 @@ class ContactTracingController extends Controller
     {
 
         error_log($request);
-        $t=$request->toArray();
-        error_log($t[0]['recipientNumber']);
+        $number=$request->toArray();
+        error_log($number[0]['recipientNumber']);
 
 
-        $recipientData = $this->User->where('phone',$request->input('recipientNumber') )->first();
-        $data = [];
+
+        for ($i = 0; $i < count($request->all()); $i++) {
+
+        $recipientData = $this->User->where('phone',$number[$i]['recipientNumber'] )->first();
+
+        if($recipientData)
+        {
+                $data = [];
                 $data['sender'] =  Auth::user()->id;
                 $data['recipient'] = $recipientData->id;
                 $contactTraceUser->insert($data);
-    //     for ($i = 0; $i < count($request->all()); $i++) {
+                // $recipientData->notify(new AddedToContactFCM);
+                //send notification to user as well as message
+        }
+        else
+        {
+                $data = [];
+                $data['sender'] =  Auth::user()->id;
+                $data['recipientName'] =  $number[$i]['recipientName'];
+                $data['recipientNumber'] =  $number[$i]['recipientNumber'];
+                $contactTraceGuest->insert($data);
+                //send notification to user as well as message
 
-    //     $recipientData = $this->User->where('phone',$request->input('recipientNumber') )->first();
-    //     if($recipientData)
-    //     {
-    //             $data = [];
-    //             $data['sender'] =  Auth::user()->id;
-    //             $data['recipient'] = $recipientData->id;
-    //             $contactTraceUser->insert($data);
-    //             // $recipientData->notify(new AddedToContactFCM);
-    //             //send notification to user as well as message
-    //     }
-    //     else
-    //     {
-    //             $data = [];
-    //             $data['sender'] =  Auth::user()->id;
-    //             $data['recipientName'] =  $request->input('recipientName');
-    //             $data['recipientNumber'] =  $request->input('recipientNumber');
-    //             $contactTraceGuest->insert($data);
-    //             //send notification to user as well as message
-
-    //     }
-    // }
+        }
+    }
 
 
 
