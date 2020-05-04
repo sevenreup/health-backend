@@ -10,10 +10,10 @@ class contact extends Model
     protected $table ="contacts";
     public function contactRecipient()
     {
-        return $this->belongstoMany('App\contact', 'contactTracing','sender','recipient');
+        return $this->belongstoMany('App\contact', 'ContactTracing','sender','recipient');
     }
     public function contactSender()
     {
-        return $this->belongstoMany('App\contact', 'contactTracing','recipient','sender');
+        return $this->belongstoMany('App\contact', 'ContactTracing','recipient','sender');
     }
 }
