@@ -17,6 +17,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
+    public function __construct(contact $contact)
+    {
+    	$this->contact = $contact;
+
+
+    }
     public function getUsers()
     {
         return User::orderby('id','desc')->get();
