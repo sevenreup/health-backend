@@ -55,8 +55,9 @@ class UsersController extends Controller
     public function getUserContacts()
     {
         $contacts = contactTraceUser::select('id','recipient')->where('status','accepted')->where('sender',Auth::user()->id)->orWhere('recipient',Auth::user()->id)->with('User:id,first_name,last_name,phone')->get();
-        $contacts .= contactTraceUser::select('id','recipient')->where('status','accepted')->where('sender',Auth::user()->id)->orWhere('recipient',Auth::user()->id)->with('User:id,first_name,last_name,phone')->get();
-        return $contacts;
+        $contacts2 = contactTraceUser::select('id','recipient')->where('status','accepted')->where('sender',Auth::user()->id)->orWhere('recipient',Auth::user()->id)->with('User:id,first_name,last_name,phone')->get();
+        $finalone = array_merge($contacts,$contacts2);
+        return $finalone;
     }
 
     // for testing
