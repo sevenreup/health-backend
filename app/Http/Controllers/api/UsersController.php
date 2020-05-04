@@ -56,7 +56,7 @@ class UsersController extends Controller
     {
         $contacts = contactTraceUser::select('id','recipient')->where('status','accepted')->where('sender',Auth::user()->id)->orWhere('recipient',Auth::user()->id)->with('User:id,first_name,last_name,phone')->get();
         $contacts .= contactTraceUser::select('id','recipient')->where('status','accepted')->where('sender',Auth::user()->id)->orWhere('recipient',Auth::user()->id)->with('User:id,first_name,last_name,phone')->get();
-        return json_encode($contacts);
+        return $contacts;
     }
 
     // for testing
