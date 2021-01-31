@@ -14,7 +14,7 @@ class DashboardController extends Controller
         $data['eventsCount'] = events::count();
         $data['usersCount'] = User::count();
         $data['fencesCount'] = fences::count();
-        
-        return view('dashboard',$data);
+
+        return view('dashboard');
     }
 }
