@@ -61,9 +61,21 @@ Route::get('/testing/users/contacts', 'api\UsersController@getUserContactsTestin
 Route::get('/testing/users/contacts/pending', 'api\UsersController@getPendingUserContactsTesting');
 
 
+// all routes pertaining to self test
+Route::post('/selftest/answers/', 'api\SelfTestController@addAnswers');
+
+
+
+
 
 });
 // end of routes for mobile application
+
+Route::get('/selftest/questions/', 'api\SelfTestController@getQuestions');
+Route::get('/selftest/answers/', 'api\SelfTestController@getAnswers');
+
+
+
 
 // start of dashboard routes
 Route::get('/users', 'api\UsersController@getUsers');

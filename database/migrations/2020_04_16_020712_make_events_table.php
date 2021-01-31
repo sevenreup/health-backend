@@ -26,7 +26,7 @@ class MakeEventsTable extends Migration
             $table->dateTime('createdAt',0)->useCurrent();
 
             $table->foreign('userId')->references('id')->on('users');
-            $table->foreign('fencesId')->references('id')->on('fences');
+            $table->foreign('fencesId')->references('id')->on('geofences');
 
         });
     }

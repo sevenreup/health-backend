@@ -13,10 +13,13 @@ class UpdateRegionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('fences', function (Blueprint $table) {
+        Schema::create('geofences', function (Blueprint $table) {
+            $table->id();
             $table->integer('deaths')->nullable();
             $table->integer('recovered')->nullable();
             $table->integer('confirmed')->nullable();
+            $table->string('ta_name')->nullable();
+            $table->string('district')->nullable();
         });
     }
 
@@ -27,8 +30,6 @@ class UpdateRegionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('fences', function (Blueprint $table) {
-            $table->dropColumn(['deaths','recovered', 'confirmed']);
-        });
+        Schema::dropIfExists('geofences');
     }
 }

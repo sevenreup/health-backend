@@ -16,61 +16,61 @@ class TenUsersSeeder extends Seeder
         User::create([
             'first_name' => Str::random(10),
             'last_name' => Str::random(10),
-            'phone' => '0001',
+            'phone' => '000198',
             'password' => bcrypt('password'),
         ]);
         User::create([
             'first_name' => Str::random(10),
             'last_name' => Str::random(10),
-            'phone' => '0002',
+            'phone' => '009802',
             'password' => bcrypt('password'),
         ]);
         User::create([
             'first_name' => Str::random(10),
             'last_name' => Str::random(10),
-            'phone' => '0003',
+            'phone' => '098003',
             'password' => bcrypt('password'),
         ]);
         User::create([
             'first_name' => Str::random(10),
             'last_name' => Str::random(10),
-            'phone' => '0004',
+            'phone' => '008904',
             'password' => bcrypt('password'),
         ]);
         User::create([
             'first_name' => Str::random(10),
             'last_name' => Str::random(10),
-            'phone' => '0005',
+            'phone' => '009805',
             'password' => bcrypt('password'),
         ]);
         User::create([
             'first_name' => Str::random(10),
             'last_name' => Str::random(10),
-            'phone' => '0006',
+            'phone' => '009806',
             'password' => bcrypt('password'),
         ]);
         User::create([
             'first_name' => Str::random(10),
             'last_name' => Str::random(10),
-            'phone' => '0007',
+            'phone' => '098007',
             'password' => bcrypt('password'),
         ]);
         User::create([
             'first_name' => Str::random(10),
             'last_name' => Str::random(10),
-            'phone' => '0008',
+            'phone' => '009808',
             'password' => bcrypt('password'),
         ]);
         User::create([
             'first_name' => Str::random(10),
             'last_name' => Str::random(10),
-            'phone' => '0009',
+            'phone' => '098009',
             'password' => bcrypt('password'),
         ]);
         User::create([
             'first_name' => Str::random(10),
             'last_name' => Str::random(10),
-            'phone' => '00010',
+            'phone' => '0009810',
             'password' => bcrypt('password'),
         ]);
     }
