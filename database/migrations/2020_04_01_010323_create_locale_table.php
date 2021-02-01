@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQuestionsTable extends Migration
+class CreateLocaleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('locales', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['223', '224', '225', '226'])->comment('223 is for boolean. 224 is for array. 225 is for text. 226 is for array boolean')->nullable();
-            $table->integer('choiceSize')->nullable();
+            $table->string("country");
+            $table->string("language");
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('locales');
     }
 }
