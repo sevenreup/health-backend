@@ -17,6 +17,9 @@ class CreateLocaleTable extends Migration
             $table->id();
             $table->string("country");
             $table->string("language");
+            $table->string("languageName");
+            $table->string("code_2");
+            $table->string("code_3");
             $table->timestamps();
         });
     }

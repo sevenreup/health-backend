@@ -2,21 +2,16 @@ import React, { useState } from "react";
 import { render } from "react-dom";
 import {
     AppBar,
-    Divider,
-    Drawer,
     IconButton,
-    List,
-    ListItem,
-    ListItemText,
+    CssBaseline,
     makeStyles,
     Toolbar,
     Typography,
 } from "@material-ui/core";
 import clsx from "clsx";
 import MenuIcon from "@material-ui/icons/Menu";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import { DashRoutes, AppRoutes } from "./route";
-import { BrowserRouter, useHistory } from "react-router-dom";
+import { DashRoutes } from "./route";
+import { BrowserRouter } from "react-router-dom";
 import AppDrawer from "./components/AppDrawer";
 
 const drawerWidth = 240;
@@ -81,7 +76,6 @@ const useStyles = makeStyles((theme) => ({
 function App() {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const history = useHistory();
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -94,6 +88,7 @@ function App() {
     return (
         <BrowserRouter>
             <div className={classes.root}>
+                <CssBaseline />
                 <AppBar
                     position="fixed"
                     className={clsx(classes.appBar, {
@@ -118,8 +113,12 @@ function App() {
                         </Typography>
                     </Toolbar>
                 </AppBar>
-                <AppDrawer handleDrawerClose={handleDrawerClose} open={open}/>
-                <main>
+                <AppDrawer handleDrawerClose={handleDrawerClose} open={open} />
+                <main
+                    className={clsx(classes.content, {
+                        [classes.contentShift]: open,
+                    })}
+                >
                     <div className={classes.drawerHeader} />
                     <DashRoutes />
                 </main>

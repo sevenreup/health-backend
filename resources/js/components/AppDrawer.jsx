@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import {
+    Collapse,
     Divider,
     Drawer,
     IconButton,
@@ -9,6 +10,8 @@ import {
     makeStyles,
 } from "@material-ui/core";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
 import { AppRoutes } from "../route";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
@@ -51,6 +54,35 @@ const DrawerLink = ({ label, to, activeOnlyWhenExact }) => {
     );
 };
 
+const DrawerCollapse = ({ label, paths }) => {
+    const [open, setOpen] = useState(false);
+
+    const handleClick = () => {
+        setOpen(!open);
+    };
+
+    return (
+        <Fragment>
+            <ListItem button onClick={handleClick}>
+                <ListItemText primary={label} />
+                {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                    {paths.map((route, index) => (
+                        <DrawerLink
+                            label={route.name}
+                            to={route.path}
+                            key={index}
+                            activeOnlyWhenExact={true}
+                        />
+                    ))}
+                </List>
+            </Collapse>
+        </Fragment>
+    );
+};
+
 export default function AppDrawer({ handleDrawerClose, open }) {
     const classes = useStyles();
 
@@ -71,14 +103,22 @@ export default function AppDrawer({ handleDrawerClose, open }) {
             </div>
             <Divider />
             <List>
-                {AppRoutes.map((route, index) => (
-                    <DrawerLink
-                        label={route.name}
-                        to={route.path}
-                        key={index}
-                        activeOnlyWhenExact={true}
-                    />
-                ))}
+                {AppRoutes.map((route, index) => {
+                    return route.colapse ? (
+                        <DrawerCollapse
+                            label={route.name}
+                            paths={route.paths}
+                            key={index}
+                        />
+                    ) : (
+                        <DrawerLink
+                            label={route.name}
+                            to={route.path}
+                            key={index}
+                            activeOnlyWhenExact={true}
+                        />
+                    );
+                })}
             </List>
         </Drawer>
     );

@@ -94,5 +94,9 @@ Route::get('/fences/{fencesId}/users', 'api\FencesController@getUsersInFence');
 
 
 
+Route::apiResource('language', 'LanguageController');
+
 // end of dashboard routes
+
+
 

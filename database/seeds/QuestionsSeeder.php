@@ -17,12 +17,18 @@ class QuestionsSeeder extends Seeder
     public function run()
     {
         $en = Locale::create([
-            "country" => "USA",
-            "language" => "en"
+            "country" => "United States of America",
+            "language" => "en",
+            "languageName" => "English",
+            "code_2" => "US",
+            "code_3" => "USA"
         ]);
         $ny = Locale::create([
-            "country" => "MW",
-            "language" => "ny"
+            "country" => "Malawi",
+            "language" => "ny",
+            "languageName" => "Chichewa",
+            "code_2" => "MW",
+            "code_3" => "en"
         ]);
 
         for ($i = 0; $i < 5; $i++) {

@@ -8,8 +8,12 @@ import Fences from "./views/fences";
 const AppRoutes = [
     { name: "Dashboard", path: "/" },
     { name: "Selftest", path: "/selftest" },
-    { name: "Languages", path: "/languages" },
     { name: "Fences", path: "/fences" },
+    {
+        name: "Configure",
+        colapse: true,
+        paths: [{ name: "Languages", path: "/languages" }],
+    },
 ];
 
 function DashRoutes() {
