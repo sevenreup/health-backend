@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', 'DashboardController@dashboard')->name('dashboard');
+Route::view('/{path?}', 'dashboard');

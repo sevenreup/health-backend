@@ -27636,8 +27636,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 var API = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
-  baseURL: "http://127.0.0.1:8000/api",
-  timeout: 1000
+  baseURL: "http://127.0.0.1:8000/api"
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (API);
 
