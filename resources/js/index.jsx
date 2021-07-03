@@ -120,7 +120,9 @@ function App() {
                     })}
                 >
                     <div className={classes.drawerHeader} />
-                    <DashRoutes />
+                    <div className="container">
+                        <DashRoutes />
+                    </div>
                 </main>
             </div>
         </BrowserRouter>

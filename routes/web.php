@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::view('/{path?}', 'dashboard');
+Route::view('/{path?}', 'dashboard')->where('path', '.*');

@@ -29,6 +29,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import api from "../api";
 import AlertDialog from "../components/AlertDialog";
 import DeleteIcon from "@material-ui/icons/Delete";
+import AppTable from "../components/AppTable";
 
 const malawiLanguages = {
     ny: {
@@ -283,49 +284,45 @@ export default function Languages() {
 
     return (
         <div className="container">
-            <TableContainer component={Paper}>
-                <Toolbar>
-                    <span style={{ flexGrow: 1 }}></span>
-                    <IconButton onClick={handleClickOpen}>
-                        <AddCircleIcon />
-                    </IconButton>
-                </Toolbar>
-                {loading && <LinearProgress />}
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Country</TableCell>
-                            <TableCell>Country ISO</TableCell>
-                            <TableCell>Language Name</TableCell>
-                            <TableCell>Language</TableCell>
-                            <TableCell></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {languageData.map((language, index) => (
-                            <TableRow key={index}>
-                                <TableCell>{language.country}</TableCell>
-                                <TableCell>
-                                    {language.code_2} / {language.code_3}
-                                </TableCell>
-                                <TableCell>{language.languageName}</TableCell>
-                                <TableCell>{language.language}</TableCell>
-                                <TableCell>
-                                    <IconButton
-                                        onClick={() => {
-                                            setDeleteL({ language, index });
-                                            setOpenDelete(true);
-                                        }}
-                                    >
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <CreateLanguage open={open} handleClose={handleClose} hashed={languageDataHash}/>
+            <AppTable
+                loading={loading}
+                handleNewClick={handleClickOpen}
+                headers={
+                    <TableRow>
+                        <TableCell>Country</TableCell>
+                        <TableCell>Country ISO</TableCell>
+                        <TableCell>Language Name</TableCell>
+                        <TableCell>Language</TableCell>
+                        <TableCell></TableCell>
+                    </TableRow>
+                }
+            >
+                {languageData.map((language, index) => (
+                    <TableRow key={index}>
+                        <TableCell>{language.country}</TableCell>
+                        <TableCell>
+                            {language.code_2} / {language.code_3}
+                        </TableCell>
+                        <TableCell>{language.languageName}</TableCell>
+                        <TableCell>{language.language}</TableCell>
+                        <TableCell>
+                            <IconButton
+                                onClick={() => {
+                                    setDeleteL({ language, index });
+                                    setOpenDelete(true);
+                                }}
+                            >
+                                <DeleteIcon />
+                            </IconButton>
+                        </TableCell>
+                    </TableRow>
+                ))}
+            </AppTable>
+            <CreateLanguage
+                open={open}
+                handleClose={handleClose}
+                hashed={languageDataHash}
+            />
             <AlertDialog
                 title="Do you want to delete this language?"
                 description="This action cannot be undone.."
